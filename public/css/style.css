@@ -1,0 +1,13 @@
+#messages {
+  margin-bottom: 45px;
+  padding: 0 10px;
+}
+#messages .list-group-item:nth-child(2n) {
+  background-color: #EAEAEA;
+}
+#control {
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+}
