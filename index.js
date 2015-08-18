@@ -14,14 +14,13 @@ var users = {};
 
 io.sockets.on('connection', function(client_socket){
   console.log('>>> * Received connection. *');
-  //console.log(client_socket);
   client_socket.on('new guy', function(name){
     users[client_socket.id] = {"name" : name};
     console.log('>>> Added new user: ' + users[client_socket.id].name);
     userCount=userCount+1;
     console.log('>>>  ' + userCount + ' users online.');
     io.emit('room update', users);
-    io.emit('chat message', ">>> User \"" + name + "\" has joined the chat <<<");
+    io.emit('announcement', "User \"" + name + "\" has joined the chat.");
   });
   client_socket.on('chat message', function(msg){
     io.emit('chat message', msg);
@@ -35,7 +34,7 @@ io.sockets.on('connection', function(client_socket){
       console.log('>>> Removed user: ' + rmname);
       console.log('>>>  ' + userCount + ' users online.');
       io.emit('room update', users);
-      io.emit('chat message', ">>> User \"" + rmname + "\" has disconnected <<<");
+      io.emit('announcement', "User \"" + rmname + "\" has disconnected.");
     }
     else {
       console.log(">>> False alarm. Nothing happen.");
