@@ -9,14 +9,28 @@
     <title>Socket.IO chat</title>
   </head>
   <body>
-    <ul id="messages" class="list-group row"></ul>
-    <div id="control" class="well well-sm row">
-      <form action="" class="input-group">
-        <input id="m" autocomplete="off" class="form-control" />
-        <span class="input-group-btn">
-          <button class="btn btn-default">Send</button>
-        </span>
-      </form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-sm-push-9">
+          <div id="user-list" class="panel panel-default">
+            <div class="panel-heading">Online users</div>
+            <ul id="users" class="list-group"></ul>
+          </div>
+        </div>
+        <div class="col-sm-9 col-sm-pull-3">
+          <ul id="messages" class="list-group"></ul>
+        </div>
+      </div>
+      <div class="row">
+        <div id="control" class="well well-sm">
+          <form action="" class="input-group">
+            <input id="m" autocomplete="off" class="form-control" />
+            <span class="input-group-btn">
+              <button class="btn btn-default">Send</button>
+            </span>
+          </form>
+        </div>
+      </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>

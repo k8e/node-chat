@@ -21,6 +21,7 @@ io.sockets.on('connection', function(client_socket){
     userCount=userCount+1;
     console.log('>>>  ' + userCount + ' users online.');
     console.log(users);
+    io.emit('room update', users);
     io.emit('chat message', ">>> User \"" + name + "\" has joined the chat <<<");
   });
   client_socket.on('chat message', function(msg){
@@ -35,6 +36,7 @@ io.sockets.on('connection', function(client_socket){
       console.log('>>> Removed user: ' + rmname);
       console.log('>>>  ' + userCount + ' users online.');
       console.log(users);
+      io.emit('room update', users);
       io.emit('chat message', ">>> User \"" + rmname + "\" has disconnected <<<");
     }
     else {

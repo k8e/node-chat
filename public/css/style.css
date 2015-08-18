@@ -1,5 +1,9 @@
+#user-list {
+  margin-top: 1em;
+}
 #messages {
   margin-bottom: 45px;
+  margin-top: 1em;
   padding: 0 10px;
 }
 #messages .list-group-item:nth-child(2n) {
