@@ -4,22 +4,26 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var ts = require('./public/js/timeStamp.js');
 
+var clientIp;
+var clientAgent;
+var userCount = 0;
+var users = {};
+
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+  clientIp = req.ip;
+  clientAgent = req.headers["user-agent"];
 });
-
-var userCount = 0;
-var users = {};
 
 io.sockets.on('connection', function(clientSocket){
   // Received a connection
   clientSocket.on('new guy', function(name){
-    users[clientSocket.id] = {"name" : name};
+    users[clientSocket.id] = {"name" : name, "ip" : clientIp, "agent": clientAgent};
     // New user added to chat
     userCount=userCount+1;
-    logUpdate(users[clientSocket.id].name + " joined.");
+    logUpdate(users[clientSocket.id].ip + " \"" + users[clientSocket.id].name + "\" joined.");
     io.emit('room update', users);
     io.emit('announcement', "User \"" + name + "\" has joined the chat.");
   });
