@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var timestamp;
+var ts = require('./public/js/timestamp.js');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -18,9 +18,8 @@ io.sockets.on('connection', function(client_socket){
   client_socket.on('new guy', function(name){
     users[client_socket.id] = {"name" : name};
     // New user added to chat
-    timestamp = new Date().toString();
     userCount=userCount+1;
-    console.log( timestamp + " > " + userCount + " online | " + users[client_socket.id].name + " joined.");
+    logUpdate(users[client_socket.id].name + " joined.");
     io.emit('room update', users);
     io.emit('announcement', "User \"" + name + "\" has joined the chat.");
   });
@@ -33,8 +32,7 @@ io.sockets.on('connection', function(client_socket){
       var rmname = users[client_socket.id].name;
       delete users[client_socket.id];
       userCount=userCount-1;
-      timestamp = new Date().toString();
-      console.log( timestamp + " > " + userCount + " online | " + rmname + " left.");
+      logUpdate(rmname + " left.");
       io.emit('room update', users);
       io.emit('announcement', "User \"" + rmname + "\" has disconnected.");
     }
@@ -44,7 +42,11 @@ io.sockets.on('connection', function(client_socket){
   });
 });
 
+function logUpdate(info) {
+  var timestamp = ts.asLog();
+  console.log(timestamp + userCount + " online | " + info);
+}
+
 http.listen(3000, function(){
-  timestamp = new Date().toString();
-  console.log(timestamp + " > " + 'Now listening on *:3000');
+  logUpdate("Now listening on *:3000");
 });
