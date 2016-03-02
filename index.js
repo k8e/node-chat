@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var ts = require('./public/js/timestamp.js');
+var ts = require('./public/js/timeStamp.js');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -13,28 +13,28 @@ app.get('/', function(req, res){
 var userCount = 0;
 var users = {};
 
-io.sockets.on('connection', function(client_socket){
+io.sockets.on('connection', function(clientSocket){
   // Received a connection
-  client_socket.on('new guy', function(name){
-    users[client_socket.id] = {"name" : name};
+  clientSocket.on('new guy', function(name){
+    users[clientSocket.id] = {"name" : name};
     // New user added to chat
     userCount=userCount+1;
-    logUpdate(users[client_socket.id].name + " joined.");
+    logUpdate(users[clientSocket.id].name + " joined.");
     io.emit('room update', users);
     io.emit('announcement', "User \"" + name + "\" has joined the chat.");
   });
-  client_socket.on('chat message', function(msg){
+  clientSocket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
-  client_socket.on('disconnect', function(socket){
+  clientSocket.on('disconnect', function(socket){
     // Received a disconnection
-    if (users[client_socket.id]) {
-      var rmname = users[client_socket.id].name;
-      delete users[client_socket.id];
-      userCount=userCount-1;
-      logUpdate(rmname + " left.");
+    if (users[clientSocket.id]) {
+      var remName = users[clientSocket.id].name;
+      delete users[clientSocket.id];
+      userCount = userCount-1;
+      logUpdate(remName + " left.");
       io.emit('room update', users);
-      io.emit('announcement', "User \"" + rmname + "\" has disconnected.");
+      io.emit('announcement', "User \"" + remName + "\" has disconnected.");
     }
     else {
       console.log(">>> False alarm. Nothing happen.");
@@ -43,8 +43,8 @@ io.sockets.on('connection', function(client_socket){
 });
 
 function logUpdate(info) {
-  var timestamp = ts.asLog();
-  console.log(timestamp + userCount + " online | " + info);
+  var timeStamp = ts.asLog();
+  console.log(timeStamp + userCount + " online | " + info);
 }
 
 http.listen(3000, function(){
