@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var ts = require('./public/js/timeStamp.js');
+var ts = require('./public/js/timestamp.js');
 
 var clientIp;
 var clientAgent;
