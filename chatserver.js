@@ -19,10 +19,14 @@ app.get('/', function(req, res){
 
 io.sockets.on('connection', function(clientSocket){
   // Received a connection
-  clientSocket.on('new guy', function(name){
+  clientSocket.on('idk', function(){
+    userCount++;
+    io.emit('room update', users);
+  });
+
+  clientSocket.on('login', function(name){
     users[clientSocket.id] = {"name" : name, "ip" : clientIp, "agent": clientAgent};
     // New user added to chat
-    userCount=userCount+1;
     logUpdate(users[clientSocket.id].ip + " \"" + users[clientSocket.id].name + "\" joined.");
     io.emit('room update', users);
     io.emit('announcement', "User \"" + name + "\" has joined the chat.");
@@ -35,7 +39,7 @@ io.sockets.on('connection', function(clientSocket){
     if (users[clientSocket.id]) {
       var remName = users[clientSocket.id].name;
       delete users[clientSocket.id];
-      userCount = userCount-1;
+      userCount--;
       logUpdate(remName + " left.");
       io.emit('room update', users);
       io.emit('announcement', "User \"" + remName + "\" has disconnected.");
