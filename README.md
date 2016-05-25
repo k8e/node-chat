@@ -10,12 +10,12 @@ Requirements: node.js, npm
 1. From the root directory, run:
 `npm install`
 2. Then run:
-`node index.js`
+`node chatserver.js`
 3. Chat box should be running on **localhost:3000**
 
 # To Do
 ######Node-chat is a work in progress. Here are some things I'm hoping to do.
-1. Sign-in form, rather than prompt for name
+1. Use templating
 2. Handling for duplicate names
 3. User options
    - Get info
