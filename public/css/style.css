@@ -1,5 +1,6 @@
 #user-list {
   margin-top: 1em;
+  box-shadow: 5px 5px 0 #000000;
 }
 #user-list .panel-heading {
     font-weight: bold;
@@ -7,10 +8,22 @@
 #messages {
   margin-bottom: 45px;
   margin-top: 1em;
+  box-shadow: 5px 5px 0 #000000;
+}
+#messages .list-group-item {
+  border-bottom: 1px dotted #000000;
+  border-top: 1px dotted #000000;
 }
 #messages .list-group-item:nth-child(2n) {
   background-color: #EAEAEA;
 }
+#messages .list-group-item:first-child {
+  border-top: 1px solid #000000
+}
+#messages .list-group-item:last-child {
+  border-bottom: 1px solid #000000;
+}
+
 .username {
     font-weight: bold;
 }
@@ -18,8 +31,28 @@
     font-style: italic;
 }
 #control {
-  padding: 5px;
+  padding: 10px;
   position: fixed;
   bottom: 0;
   margin: 0;
+  border-radius: 0px;
+}
+input#user_input {
+  width: 99%;
+}
+
+nav {
+  background-color: #FFFFFF;
+  background-image: url('../img/logo.png');
+  background-position: 18px -7px;
+  background-size: 200px;
+  background-repeat: no-repeat;
+  height: 75px;
+  width: 100%;
+}
+
+hr {
+  margin-top: 0 !important;
+  height: 5px !important;
+  border-bottom: 1px solid #FFFFFF;
 }
