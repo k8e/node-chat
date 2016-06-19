@@ -1,9 +1,14 @@
+body {
+  background-color: #C0D0E0;
+}
+
 #user-list {
   margin-top: 1em;
   box-shadow: 5px 5px 0 #000000;
 }
 #user-list .panel-heading {
-    font-weight: bold;
+  background-color: #CCCCCC;
+  font-weight: bold;
 }
 #messages {
   margin-bottom: 45px;
@@ -31,6 +36,7 @@
     font-style: italic;
 }
 #control {
+  background-color: #EAEAEA;
   padding: 10px;
   position: fixed;
   bottom: 0;

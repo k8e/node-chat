@@ -45,7 +45,7 @@ io.sockets.on('connection', function(clientSocket){
       io.emit('announcement', "User \"" + remName + "\" has disconnected.");
     }
     else {
-      console.log(">>> False alarm. Nothing happen.");
+      // User probably left without ever signing in
     }
   });
 });
