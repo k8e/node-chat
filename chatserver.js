@@ -55,6 +55,6 @@ function logUpdate(info) {
   console.log(timeStamp + userCount + " online | " + info);
 }
 
-http.listen(3000, function(){
+http.listen(3000, "0.0.0.0", function(){
   logUpdate("Now listening on *:3000");
 });

@@ -1,19 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 body {
   background-color: #C0D0E0;
+  font-family: 'Maven Pro', 'Tahoma', 'Verdana', sans-serif;
 }
 
 #user-list {
   margin-top: 1em;
   box-shadow: 5px 5px 0 #000000;
+  word-wrap: break-word;
 }
 #user-list .panel-heading {
   background-color: #CCCCCC;
   font-weight: bold;
+  text-transform: uppercase;
 }
 #messages {
   margin-bottom: 45px;
   margin-top: 1em;
   box-shadow: 5px 5px 0 #000000;
+  word-wrap: break-word;
 }
 #messages .list-group-item {
   border-bottom: 1px dotted #000000;
@@ -34,6 +41,7 @@ body {
 }
 .announcement {
     font-style: italic;
+    text-transform: uppercase;
 }
 #control {
   background-color: #EAEAEA;
@@ -43,6 +51,11 @@ body {
   margin: 0;
   border-radius: 0px;
 }
+
+#control .btn {
+  text-transform: uppercase;
+}
+
 input#user_input {
   width: 99%;
 }
@@ -61,4 +74,26 @@ hr {
   margin-top: 0 !important;
   height: 5px !important;
   border-bottom: 1px solid #FFFFFF;
+}
+
+#scroll-down {
+  display: none;
+  background-color: rgba(0,0,0,0.2);
+  color: #FFFFFF;
+  font-size: 20px;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  position: fixed;
+  bottom: 100px;
+  text-decoration: none;
+}
+#scroll-down:hover {
+  background-color: rgba(0,0,0,0.3);
+  text-decoration: none;
+}
+
+#end {
+  display: block;
+  height: 25px;
 }
